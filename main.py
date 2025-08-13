@@ -81,3 +81,34 @@ while True:
         else:
             print(f"You beat {rooms[current_room]['Boss']}!")
             break
+    # Accept players move as input
+    user_input = input("Enter your move:\n")
+
+    # Split move into words
+    next_move = user_input.split(' ')
+
+    # First word is action
+    action = next_move[0].title()
+
+    if len(next_move) > 1:
+        item = next_move[1:]
+        direction = next_move[1].title()
+
+        item = ' '.join(item).title()
+
+    #Moving between rooms
+    if action == "Go":
+
+        try:
+            current_room = rooms[current_room][direction]
+            msg = f"You travel {direction}."
+
+        except:
+            msg = f"You can't go that way."
+    # Picking up items
+    elif action == "Get":
+        if item == rooms[current_room]["Item"]:
+            if item not in inventory:
+                inventory.append(rooms[current_room]["Item"])
+                msg = f"{item} retrieved"
+                
