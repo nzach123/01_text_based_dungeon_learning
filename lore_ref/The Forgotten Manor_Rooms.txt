@@ -1,26 +1,8 @@
-﻿import os
-
-
-# Display starting menu
-def prompt():
-    print("\t\t\tWelcome to my game\n\n\
-        You must collect all six items before fighting the boss.\n\n\
-        Moves:\t\"go {direction}\" (travel north, south, east, or west)\n\
-        \t\"get {item}\" (add nearby item to inventory)\n\n")
-
-    input("Press any key to continue...")
-
-# clear screen
-def clear():
-    os.system("cls" if os.name == "nt" else "clear")
-
-
-#Map - CREATE MAP
 rooms = {
     "Awakening Chamber": {
         "North": "Passage of Kings",
         "South": "The Grand Hall",
-        "Description": "You wake sprawled upon cold stone, the absolute darkness broken only by moonlight creeping through ancient diamond-paned window./n/ To the north, a door of blackened steel looms like a giant's shield, its serpent-wrought handle cold as winter's heart and utterly immovable." 
+        "Description": "You wake sprawled upon cold stone, the absolute darkness broken only by moonlight creeping through ancient diamond-paned window. To the north, a door of blackened steel looms like a giant's shield, its serpent-wrought handle cold as winter's heart and utterly immovable." 
         },
     "The Grand Hall": {
         "North": "Awakening Chamber", 
@@ -70,7 +52,7 @@ rooms = {
         },
     "Drowner's Winery": {
         "North": "Scullery", 
-        "Chest": "Locked Chest",
+        "Item": "Chest",
         "Description": "Stained wine weeps from shattered caskets. The air hangs thick with the phantom sweetness of alcohol lingering in wood. Upon the far wall stands an iron chest bearing three sullen sockets. Here, where sovereignty dissolved into spirits, the final key still waits."
         },
     "Passage of King's": {
@@ -83,113 +65,3 @@ rooms = {
         }
 
     }
-
-# List of vowels
-
-vowels = ["a", "e", "i", "o", "u"]
-
-# List to track inventory
-inventory = []
-
-# Tracks current room
-current_room = "Awakening Chamber"
-
-
-
-# Result of the last message
-
-msg = ""
-
-clear()
-prompt()
-
-
-#Gameplay Loop
-while True:
-    clear()
-
-    #Display info to player
-    print(f"You are in {current_room}\nInventory: {inventory}\n{"-" * 27}")
-    print(rooms[current_room]["Description"])
-
-    #Display message
-    print(msg)
-
-    #Item indicator
-    if "Item" in rooms[current_room].keys():
-        nearby_item = rooms[current_room]["Item"]
-        if nearby_item not in inventory:
-            # Plural
-            if nearby_item[-1] == "s":
-                print(f"You see {nearby_item}")
-            # Singular starts with a vowel
-            if nearby_item[0] in vowels:
-                print(f"You see an {nearby_item}")
-            # Singular starts with consonant
-            else:
-                print(f"You see a {nearby_item}")
-
-    #Boss Encounter
-    if "Boss" in rooms[current_room].keys():
-        # Lose - Player has not collect all items
-        if len(inventory) < 3: #Reduced for testing
-            print(f"You lost a fight with {rooms[current_room]["Boss"]}")
-            break
-        # Win
-        else:
-            print(f"You beat {rooms[current_room]["Boss"]}!")
-            break
-
-    if "Chest" in rooms[current_room].keys():
-        nearby_chest = rooms[current_room]["Chest"]
-        if nearby_chest == "Locked Chest":
-            if len(inventory) == 3: #Reduced for testing
-               print(f"You open the {nearby_chest} with the rings.")
-            else:
-                 print(f"You need more rings to open the {nearby_chest}.")
-
-    # Accept players move as input
-    user_input = input("Enter your move:\n")
-
-    # Split move into words
-    next_move = user_input.split(" ")
-
-    # First word is action
-    action = next_move[0].title()
-
-    if len(next_move) > 1:
-        item = next_move[1:]
-        direction = next_move[1].title()
-
-        item = " ".join(item).title()
-
-
-    #Moving between rooms
-    if action == "Go":
-
-        try:
-            current_room = rooms[current_room][direction]
-            msg = f"You travel {direction}."
-
-        except:
-            msg = f"You can't go that way."
-    # Picking up items
-    elif action == "Get":
-        try:
-            if "Item" in rooms[current_room] and item.lower() == rooms[current_room]["Item"].lower(): #Fixed
-                if item not in inventory:
-                    inventory.append(rooms[current_room]["Item"])
-                    msg = f"{item} retrieved"
-                else:
-                    msg = f"You already have the {item}."
-            else:
-                msg = f"Can't find {item}."
-        except:
-            msg = f"Can't find {item}."
-
-
-    # Exit game
-    elif action == "Exit":
-        break
-    else:
-        msg
