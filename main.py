@@ -21,74 +21,86 @@ rooms = {
     "Awakening Chamber": {
         "North": "Passage of King's",
         "South": "The Grand Hall",
-        "Description": "You wake sprawled upon cold stone, the absolute darkness broken only by moonlight creeping through ancient diamond-paned window.\nTo the north, a door of blackened steel looms like a giant's shield, its serpent-wrought handle cold as winter's heart and utterly immovable."
+        "Description": "You wake sprawled upon cold stone, the absolute darkness broken only by moonlight creeping through ancient diamond-paned window.\nTo the north, a door of blackened steel looms like a giant's shield, its serpent-wrought handle cold as winter's heart and utterly immovable.",
+        "visited": False
         },
     "The Grand Hall": {
         "North": "Awakening Chamber",
         "South": "The Bone Garden",
         "West" : "Moonlight Gallery",
         "East": "Scullery",
-        "Description": "Moonbeams slant through high windows, illuminating dust that dance around the great table of black oak, surrounded by chairs toppled in chaos.\nThree stone sentinels preside over this Grand hall. Their bronze, silver, and gold placards tell of rings gifted to a king who reigns eternal."
+        "Description": "Moonbeams slant through high windows, illuminating dust that dance around the great table of black oak, surrounded by chairs toppled in chaos.\nThree stone sentinels preside over this Grand hall. Their bronze, silver, and gold placards tell of rings gifted to a king who reigns eternal.",
+        "visited": False
         },
     "Moonlight Gallery": {
         "North": "The King's Rest",
         "South": "The Royal Armory",
         "West" : "Scriptorium",
         "East": "The Grand Hall",
-        "Description": "Silver moonlight light pours through windows that frame the banners that flow through the gallery, portraits whose painted eyes follow your passage.\nMemories of lords and ladies who once walked these halls laid bare."
+        "Description": "Silver moonlight light pours through windows that frame the banners that flow through the gallery, portraits whose painted eyes follow your passage.\nMemories of lords and ladies who once walked these halls laid bare.",
+        "visited": False
         },
 
     "The King's Rest" : {
         "South": "Moonlight Gallery",
         "Item": "Golden Ring",
-        "Description": "Power emanates from this great chamber where shadows pool like black blood around the throne of the forgotten king.\nRed satin drapes down over the kings headrest. A Golden Ring rests upon its velvet cushion, radiating light so powerful, you cannot look away."
+        "Description": "Power emanates from this great chamber where shadows pool like black blood around the throne of the forgotten king.\nRed satin drapes down over the kings headrest. A Golden Ring rests upon its velvet cushion, radiating light so powerful, you cannot look away.",
+        "visited": False
         },
     "Scriptorium" : {
         "East": "Moonlight Gallery",
         "West": "Scriptorium",
-        "Description" : "Bound leather and parchment of ancient histories lie here: chronicles of the three knights, records of the rings, accounts of a realm's glory.\nQuills rest like the bones of their maester, crumbling with the throne of which they served."
+        "Description" : "Bound leather and parchment of ancient histories lie here: chronicles of the three knights, records of the rings, accounts of a realm's glory.\nQuills rest like the bones of their maester, crumbling with the throne of which they served.",
+        "visited": False
         },
     "The Royal Armory": {
         "North": "Moonlight Gallery",
         "Item": "Silver Ring",
-        "Description": "Steel in ordered rows where the king's knights once drew their blades, worn shields bearing the heraldry of the forgotten realm.\nA Silver Ring of Sharp Decision gleams. These instruments of royal justice wait perfectly sharp, eternally loyal to masters made of shadow and stone."
+        "Description": "Steel in ordered rows where the king's knights once drew their blades, worn shields bearing the heraldry of the forgotten realm.\nA Silver Ring of Sharp Decision gleams. These instruments of royal justice wait perfectly sharp, eternally loyal to masters made of shadow and stone.",
+        "visited": False
         },
     "Scullery": {
         "North": "Provision's Vault",
         "South": "Drowner's Winery",
         "West" : "The Grand Hall",
         "East": "Thrall's Quaters",
-        "Description": "Copper vessels hang like the organs of gutted beasts, broken stone basins and dusty cutlery inhabit the uneven cobblestone floor.\nRemnants of the once great feasts that honored their liege now rotting for eternity."
+        "Description": "Copper vessels hang like the organs of gutted beasts, broken stone basins and dusty cutlery inhabit the uneven cobblestone floor.\nRemnants of the once great feasts that honored their liege now rotting for eternity.",
+        "visited": False
         },
     "Provision's Vault": {
         "South": "Scullery",
-        "Description": "Shelves cradle jars whose contents dissolved into dust, torn sacks and empty crates.\nThe air carries scents of spices that once overflowed, preserving nothing but the echo of abundance.\nHere lie the remnants of prosperity that died with the king, rotten by time and forgotten."
+        "Description": "Shelves cradle jars whose contents dissolved into dust, torn sacks and empty crates.\nThe air carries scents of spices that once overflowed, preserving nothing but the echo of abundance.\nHere lie the remnants of prosperity that died with the king, rotten by time and forgotten.",
+        "visited": False
         },
     "Thrall's Quaters" : {
         "West": "Scullery",
         "Item": "Brass Ring",
-        "Description": "Cots bear the impressions of bodies that once served.\nPersonal effects and torn clothes scattered throughout the dimly lit quarters.\nA brass ring sits beside the dresser, hidden in plain sight."
+        "Description": "Cots bear the impressions of bodies that once served.\nPersonal effects and torn clothes scattered throughout the dimly lit quarters.\nA brass ring sits beside the dresser, hidden in plain sight.",
+        "visited": False
         },
     "Drowner's Winery": {
         "North": "Scullery",
         "Chest": "Locked Chest",
         "Description": "Stained wine weeps from shattered caskets. The air hangs thick with the phantom sweetness of alcohol lingering in wood.\nUpon the far wall stands an iron chest bearing three sullen sockets.nHere, where sovereignty dissolved into spirits, the final key still waits.",
         "Chest_Contents": "king's Key", # Item given when chest is opened
-        "Chest_Open": False # State of the chest
+        "Chest_Open": False, # State of the chest
+        "visited": False
     },
     "Passage of King's": {
         "South": "Awakening Chamber",
         "Description": "You use the Ancient Key and the great steel door swings open. A blast of fresh air hits your face, carrying the scent of damp earth and freedom. You have escaped the Forgotten Manor.",
         "Locked": True, # This room is locked
         "Key": "Ancient Key", # Key required to enter
-        "Win": True # Player wins upon entering
+        "Win": True, # Player wins upon entering
+        "visited": False
         },
-    "Bone Garden": {
+    "The Bone Garden": {
         "North": "The Grand Hall",
         "Item": "Ancient Key",
         "Description": "Hidden beyond the three great statues lies the catacomb that cradles the final resting place of the forgotten king.\nBone and regalia are fused together, his golden circlet grown into his skull. Clutched in his skeletal hand is a large, ornate key.",
         "Locked": True, # This room is locked
-        "Key": "king's Key" # Key required to enter
+        "Key": "king's Key", # Key required to enter
+        "visited": False
         }
 
     }
@@ -103,11 +115,31 @@ inventory = []
 # Tracks current room
 current_room = "Awakening Chamber"
 
-
-
 # Result of the last message
-
 msg = ""
+
+# Enhanced display function
+def display_room_info():
+    print(f" {current_room}")
+    print(f" Inventory: {', '.join(inventory) if inventory else 'Empty'}")
+    
+    # Show obvious exits clearly
+    exits = [direction for direction in ["North", "South", "East", "West"] 
+             if direction in rooms[current_room]]
+    print(f" Exits: {', '.join(exits)}")
+    print("-" * 27)
+
+# Smart error handling
+def handle_command_error(action, item):
+    if action == "Go":
+        return "You can't go that way. Try 'go' followed by a valid direction."
+    elif action == "Get":
+        return f"You can't get '{item}'. Look around to see available items."
+    elif action == "Open":
+        return "You can't open that. Try 'open chest' if you see one."
+    else:
+        return "Invalid command. Try: go [direction], get [item], or open [object]."
+
 
 clear()
 prompt()
@@ -118,10 +150,16 @@ while True:
     clear()
 
     #Display info to player
-    print(f"You are in {current_room}\nInventory: {inventory}\n{"-" * 27}")
+    display_room_info()
     
     #Display message (moved before description)
-    print(msg + "\n")
+    if msg:
+        print(msg + "\n")
+
+    # Progressive revelation
+    if not rooms[current_room].get("visited", True):
+        print("First time here...\n".title())
+        rooms[current_room]["visited"] = True
 
     #Display room description
     print(rooms[current_room]["Description"] + "\n")
@@ -175,15 +213,15 @@ while True:
                 required_key = target_room_data.get("Key")
                 if required_key and required_key in inventory:
                     current_room = target_room_name
-                    msg = f"You use the {required_key} and travel {direction}."
+                    msg = f"You used the {required_key} and traveled {direction}."
                 else:
-                    msg = f"The {target_room_name} is locked. You need a key."
+                    msg = f"The way is locked. You need the right key."
             else:
                 current_room = target_room_name
-                msg = f"You travel {direction}."
+                msg = f"You travel {direction}.".title()
 
         except KeyError:
-            msg = f"You can't go that way."
+            msg = handle_command_error(action, direction)
         except Exception as e:
             msg = f"An unexpected error occurred: {e}"
 
@@ -193,13 +231,13 @@ while True:
             if "Item" in rooms[current_room] and item.lower() == rooms[current_room]["Item"].lower():
                 if item not in inventory:
                     inventory.append(rooms[current_room]["Item"])
-                    msg = f"{item} retrieved"
+                    msg = f"{item} added to inventory."
                 else:
                     msg = f"You already have the {item}."
             else:
-                msg = f"Can't find {item}."
+                msg = handle_command_error(action, item)
         except:
-            msg = f"Can't find {item}."
+            msg = handle_command_error(action, item)
 
     # Opening chests
     elif action == "Open":
@@ -215,7 +253,7 @@ while True:
                         if key_item and key_item not in inventory:
                             inventory.append(key_item)
                             rooms[current_room]["Chest_Open"] = True # Mark chest as open
-                            msg = f"You use the rings to open the Locked Chest and find a {key_item}!"
+                            msg = f"You used the rings to open the chest and found a {key_item}!"
                         elif key_item and key_item in inventory:
                             msg = f"The chest is open, but you already have the {key_item}."
                         else:
@@ -227,10 +265,10 @@ while True:
             else:
                 msg = "There is no chest here to open."
         else:
-            msg = "What do you want to open?"
+            msg = handle_command_error(action, item)
 
     # Exit game
     elif action == "Exit":
         break
     else:
-        msg = "Invalid command." # Ensure msg is always set for invalid commands
+        msg = handle_command_error(action, item) # Ensure msg is always set for invalid commands
