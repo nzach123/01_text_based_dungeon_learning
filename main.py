@@ -1,14 +1,10 @@
 ﻿import os
-from game_data import rooms # Import game data
+from game_data import rooms, items # Import game data
 
 
 # Display starting menu
 def prompt():
-    print("\t\t\tWelcome to The Forgotten Manor\n\n\
-        Find the three rings of the fallen knights to unlock the secrets of the manor and find your escape.\n\n\
-        Moves:\t\"go {direction}\" (travel north, south, east, or west)\n\
-        \t\"get {item}\" (add nearby item to inventory)\n\
-        \t\"open {object}\" (open a chest or other container)\n\n") # Added open command
+    print("\t\t\tWelcome to The Forgotten Manor\n\n\        Find the three rings of the fallen knights to unlock the secrets of the manor and find your escape.\n\n        Moves:\t\"go {direction}\" (travel north, south, east, or west)\n\        \t\"get {item}\" (add nearby item to inventory)\n\        \t\"drop {item}\" (drop an item from your inventory)\n\        \t\"open {object}\" (open a chest or other container)\n\        \t\"look\" (examine the room)\n\        \t\"inspect {item}\" (examine an item in your inventory)\n\n")
 
     input("Press any key to continue...")
 
@@ -49,8 +45,12 @@ def handle_command_error(action, item):
         return f"You can't get '{item}'. Look around to see available items."
     elif action == "Open":
         return "You can't open that. Try 'open chest' if you see one."
+    elif action == "Drop":
+        return f"You can't drop '{item}'. You can only drop items in your inventory."
+    elif action == "Inspect":
+        return f"You can't inspect '{item}'. You can only inspect items in your inventory."
     else:
-        return "Invalid command. Try: go [direction], get [item], or open [object]."
+        return "Invalid command. Try: go, get, drop, open, look, or inspect."
 
 # --- Command Functions ---
 
@@ -84,6 +84,7 @@ def do_get(item):
     if "Item" in rooms[current_room_name] and item.lower() == rooms[current_room_name]["Item"].lower():
         if item not in player["inventory"]:
             player["inventory"].append(rooms[current_room_name]["Item"])
+            del rooms[current_room_name]["Item"]
             msg = f"{item} added to inventory."
         else:
             msg = f"You already have the {item}."
@@ -114,6 +115,44 @@ def do_open(item):
             msg = "There is no chest here to open."
     else:
         msg = handle_command_error("Open", item)
+
+def do_look(item):
+    """Handles looking around the room."""
+    global msg
+    current_room_name = player["location"]
+    msg = rooms[current_room_name]["Description"]
+    if "Item" in rooms[current_room_name].keys():
+        nearby_item = rooms[current_room_name]["Item"]
+        if nearby_item not in player["inventory"]:
+            # Plural
+            if nearby_item[-1] == "s":
+                msg += f"\nYou see {nearby_item}"
+            # Singular starts with a vowel
+            elif nearby_item[0].lower() in vowels:
+                msg += f"\nYou see an {nearby_item}"
+            # Singular starts with consonant
+            else:
+                msg += f"\nYou see a {nearby_item}"
+
+def do_inspect(item):
+    """Handles inspecting an item in the inventory."""
+    global msg
+    if item in player["inventory"]:
+        msg = items[item]["description"]
+    else:
+        msg = handle_command_error("Inspect", item)
+
+def do_drop(item):
+    """Handles dropping an item from the inventory."""
+    global msg
+    current_room_name = player["location"]
+    if item in player["inventory"]:
+        player["inventory"].remove(item)
+        rooms[current_room_name]["Item"] = item
+        msg = f"You dropped the {item}."
+    else:
+        msg = handle_command_error("Drop", item)
+
 
 
 clear()
@@ -189,6 +228,15 @@ while True:
     # Opening chests
     elif action == "Open":
         do_open(target)
+    # Look around
+    elif action == "Look":
+        do_look(target)
+    # Inspect item
+    elif action == "Inspect":
+        do_inspect(target)
+    # Drop item
+    elif action == "Drop":
+        do_drop(target)
     # Exit game
     elif action == "Exit":
         break

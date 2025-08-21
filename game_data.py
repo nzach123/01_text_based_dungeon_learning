@@ -85,3 +85,21 @@ rooms = {
         "visited": False
         }
 }
+
+items = {
+    "Golden Ring": {
+        "description": "A ring of pure gold, warm to the touch. It is adorned with a single, flawless ruby that seems to pulse with a faint inner light."
+    },
+    "Silver Ring": {
+        "description": "This ring is crafted from polished silver and feels cool against the skin. It is etched with intricate patterns of waves and clouds."
+    },
+    "Brass Ring": {
+        "description": "A simple, unadorned ring of brass. It is surprisingly heavy and bears the faint scent of ozone."
+    },
+    "Ancient Key": {
+        "description": "A large, ornate key made of a dark, unknown metal. It feels ancient and powerful."
+    },
+    "king's Key": {
+        "description": "A small, simple key made of iron. It looks like it would fit a chest."
+    }
+}
