@@ -1,7 +1,8 @@
 import sys
 sys.path.append(r'c:\Users\nzach\OneDrive\00_python\01_text_based_dungeon_learning')
 
-from main import do_go, do_get, do_open, do_drop, do_inspect, do_look, player
+from commands import do_go, do_get, do_open, do_drop, do_inspect, do_look
+from player import player
 from game_data import rooms, items
 
 
@@ -58,8 +59,8 @@ def test_do_inspect_item_in_inventory():
     # This test only checks if the function runs without error
     # A more robust test would check the output message
 
+
 def test_do_look():
     do_look(None)
     # This test only checks if the function runs without error
     # A more robust test would check the output message
-
